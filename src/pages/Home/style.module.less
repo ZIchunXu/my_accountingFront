@@ -1,0 +1,50 @@
+.header {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    background-color: #d4b0dfde;
+    color: #ffffff;
+}
+
+.data {
+    display: flex;
+    justify-content: space-around;
+}
+
+.typeSection {
+    display: flex;
+    justify-content: space-around;
+}
+
+.content {
+    height: calc(~"(100% - 150px)");
+    position: fixed;
+    top: 100px;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+    background-color: #eefbf9;
+    padding: 10px;
+
+    :global {
+        .za-pull {
+            overflow: unset;
+        }
+    }
+}
+
+.add {
+    position: fixed;
+    bottom: 60px;
+    right: 30px;
+    z-index: 1000;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 20%);
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1PX solid #e9e9e9;
+}
