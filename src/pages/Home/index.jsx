@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import dayjs from 'dayjs'
 import { get } from '@/utils'
 import { Pull, Icon } from 'zarm';
@@ -93,11 +93,11 @@ const Home = () => {
             setPage(page + 1);
         }
     }
-const overlayStyle = { background: 'rgba(21, 16, 16, 0.505)' };
+    const overlayStyle = { background: 'rgba(21, 16, 16, 0.505)' };
     return <div className={s.home}>
         <div className={s.add}>
-            <Popup modal trigger={<MyIcon type="icon-update"/>}  {...{ overlayStyle }} nested>
-            {close =><PopupAddBill onReload={refreshData} close={close}/>}
+            <Popup modal trigger={<MyIcon type="icon-update" />}  {...{ overlayStyle }} nested>
+                {close => <PopupAddBill onReload={refreshData} close={close} />}
             </Popup>
         </div>
         <div className={s.header}>
@@ -107,12 +107,12 @@ const overlayStyle = { background: 'rgba(21, 16, 16, 0.505)' };
             </div>
             <div className={s.typeSection}>
                 <div className={s.left}>
-                    <Popup  trigger={<span>{currentSelect.name || "All Type"}</span>}>
+                    <Popup trigger={<span>{currentSelect.name || "All Type"}</span>}>
                         <PopupType onSelect={select} />
                     </Popup>
                 </div>
                 <div className={s.right}>
-                    <Popup  trigger={<span>{currentMonth}</span>} >
+                    <Popup trigger={<span>{currentMonth}</span>} >
                         <PopupDate mode="month" onSelect={selectMonth} />
                     </Popup>
                 </div>
@@ -121,7 +121,10 @@ const overlayStyle = { background: 'rgba(21, 16, 16, 0.505)' };
 
         <div className={s.content}>
             {
-                list.length ? <Pull animationDuration={200} stayTime={400} refresh={{ state: refreshing, handler: refreshData, }} load={{ state: loading, distance: 200, handler: loadData }}>
+                list.length ? <Pull animationDuration={200}
+                    stayTime={400}
+                    refresh={{ state: refreshing, handler: refreshData, }}
+                    load={{ state: loading, distance: 200, handler: loadData }}>
                     {list.map((item, index) => <BillItem data={item} key={index} />)
                     }
                 </Pull> : null

@@ -89,10 +89,17 @@ const PopupAddBill = ({ detail = {}, close, onReload }) => {
 
     const handleMoney = (value) => {
         value = String(value);
-        if (value == 'delete') {
-            let _amount = amount.slice(0, amount.length - 1)
+        if (value == 'delete' && amount[amount.length - 2] != '.') {
+            console.log(amount);
+            const _amount = amount.slice(0, amount.length - 1)
             setAmount(_amount);
-            return
+            return;
+        }
+        if (value == 'delete' && amount[amount.length - 2] == '.') {
+            console.log(amount);
+            const _amount = amount.slice(0, amount.length - 2)
+            setAmount(_amount);
+            return;
         }
         if (value == 'ok') {
             addBill();
