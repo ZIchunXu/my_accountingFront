@@ -6,11 +6,11 @@ import dayjs from 'dayjs'
 import s from './style.module.less';
 import cx from 'classnames';
 import Popup from 'reactjs-popup';
-import { get, typeMap} from '@/utils';
-import { post } from '../../utils';
+import { get, typeMap, post } from '@/utils';
 const MyIcon = Icon.createFromIconfont('//at.alicdn.com/t/c/font_3668999_xhshfhh89i.js');
 
-const PopupAddBill = ({ close, props }) => {
+const PopupAddBill = ({ detail = {}, close, onReload }) => {
+    const id = detail && detail.id;
     const [currentType, setCurrentType] = useState({});
     const [expense, setExpense] = useState([]);
     const [income, setIncome] = useState([]);
@@ -22,6 +22,19 @@ const PopupAddBill = ({ close, props }) => {
     const changeType = (type) => {
         setPayType(type);
     };
+    useEffect(() => {
+        if (detail.id) {
+            setPayType(detail.pay_type == 1 ? 'expense' : 'income');
+            setCurrentType({
+                id: detail.type_id,
+                name: detail.type_name
+            })
+            setRemark(detail.remark);
+            setAmount(detail.amount);
+            setDate(dayjs(Number(detail.date)).$d)
+        }
+    }, [detail])
+
 
     useEffect(() => {
         getTypeList();
@@ -34,7 +47,9 @@ const PopupAddBill = ({ close, props }) => {
         const income_data = list.filter(i => i.type == 2);
         setExpense(expense_data);
         setIncome(income_data);
-        setCurrentType(expense_data[0]);
+        if (!id) {
+            setCurrentType(expense_data[0]);
+        };
     }
 
     const selectDate = (val) => {
@@ -53,16 +68,23 @@ const PopupAddBill = ({ close, props }) => {
             date: dayjs(date).unix() * 1000,
             type_id: currentType.id,
             type_name: currentType.name,
-            remark: remark || ' '
+            remark: remark || ''
         }
-        const result = await post('/bill/add', params);
-        setAmount('');
-        setDate(new Date());
-        setRemark('');
-        Toast.show("Add bill successful");
-        
+        if (id) {
+            params.id = id;
+            const result = await post('/bill/update', params);
+            Toast.show("Bill Uploaded");
+        } else {
+            const result = await post('/bill/add', params);
+            setAmount('');
+            setDate(new Date());
+            setRemark('');
+            Toast.show("Add bill successful");
+        }
         close();
-        if(props.onReload) props.onReload();
+        if (onReload) {
+            onReload();
+        }
     }
 
     const handleMoney = (value) => {
@@ -105,7 +127,7 @@ const PopupAddBill = ({ close, props }) => {
                         {
                             (payType == 'expense' ? expense : income).map(item => <div onClick={() => setCurrentType(item)} key={item.id} className={s.typeItem}>
                                 <span className={cx({ [s.iconfontWrap]: true, [s.expense]: payType == 'expense', [s.income]: payType == 'income', [s.active]: currentType.id == item.id })}>
-                                <MyIcon className={s.iconfont} type={typeMap[item.id] ? typeMap[item.id].icon : 'icon-qita'} />
+                                    <MyIcon className={s.iconfont} type={typeMap[item.id] ? typeMap[item.id].icon : 'icon-qita'} />
                                 </span>
                                 <span className={s.name}>{item.name}</span>
                             </div>)

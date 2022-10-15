@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect} from 'react';
 import dayjs from 'dayjs'
 import { get } from '@/utils'
 import { Pull, Icon } from 'zarm';
@@ -7,10 +7,10 @@ import s from './style.module.less';
 import BillItem from '@/components/BillItem';
 import PopupType from '@/components/PopupType';
 import PopupDate from '@/components/PopupDate';
-import PopupAddBill from '../../components/PopupAddBill';
+import PopupAddBill from '@/components/PopupAddBill';
 import Popup from "reactjs-popup";
 
-const MyIcon = Icon.createFromIconfont('//at.alicdn.com/t/c/font_3668999_xhshfhh89i.js');
+const MyIcon = Icon.createFromIconfont('//at.alicdn.com/t/c/font_3668999_sllxcu951u.js');
 
 const REFRESH_STATE = {
     normal: 0,
@@ -31,7 +31,7 @@ const LOAD_STATE = {
 };
 
 const Home = () => {
-    const [currentTime, setCurrentTime] = useState(dayjs().format('YYYY-MM'));
+    const [currentMonth, setCurrentMonth] = useState(dayjs().format('YYYY-MM'));
     const [page, setPage] = useState(1);
     const [list, setList] = useState([]);
     const [totalPage, setTotalPage] = useState(1);
@@ -43,11 +43,11 @@ const Home = () => {
 
     useEffect(() => {
         getBillList();
-    }, [page, currentSelect, currentTime])
+    }, [page, currentSelect, currentMonth])
 
     // get list
     const getBillList = async () => {
-        const { data } = await get(`/bill/list?date=${currentTime}&page=${page}&page_size=5&type_id=${currentSelect.id || 'all'}`);
+        const { data } = await get(`/bill/list?date=${currentMonth}&page=${page}&page_size=5&type_id=${currentSelect.id || 'all'}`);
 
         if (page == 1) {
             setList(data.list);
@@ -66,7 +66,7 @@ const Home = () => {
     const selectMonth = (item) => {
         setRefreshing(REFRESH_STATE.loading);
         setPage(1);
-        setCurrentTime(item)
+        setCurrentMonth(item)
     }
 
     // select type
@@ -93,9 +93,10 @@ const Home = () => {
             setPage(page + 1);
         }
     }
+const overlayStyle = { background: 'rgba(21, 16, 16, 0.505)' };
     return <div className={s.home}>
         <div className={s.add}>
-            <Popup modal trigger={<MyIcon type="icon-update"/>}  nested>
+            <Popup modal trigger={<MyIcon type="icon-update"/>}  {...{ overlayStyle }} nested>
             {close =><PopupAddBill onReload={refreshData} close={close}/>}
             </Popup>
         </div>
@@ -106,12 +107,12 @@ const Home = () => {
             </div>
             <div className={s.typeSection}>
                 <div className={s.left}>
-                    <Popup  trigger={<button>{currentSelect.name || "All Type"}</button>}>
+                    <Popup  trigger={<span>{currentSelect.name || "All Type"}</span>}>
                         <PopupType onSelect={select} />
                     </Popup>
                 </div>
                 <div className={s.right}>
-                    <Popup  trigger={<button>{currentTime}</button>}>
+                    <Popup  trigger={<span>{currentMonth}</span>} >
                         <PopupDate mode="month" onSelect={selectMonth} />
                     </Popup>
                 </div>

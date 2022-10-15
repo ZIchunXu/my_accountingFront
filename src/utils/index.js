@@ -1,8 +1,8 @@
 import axios from './axios'
 export const get = axios.get
 export const post = axios.post
-
-
+import { baseUrl } from '@/config'
+const MODE = import.meta.env.MODE 
 export const typeMap = {
     1: {
       icon: 'icon-gouwu-2'
@@ -51,5 +51,15 @@ export const typeMap = {
     },
     16: {
       icon: 'icon-qita'
+    }
+    
+  }
+
+  export const imgUrlTrans = (url) => {
+    if (url && url.startsWith('http')) {
+      return url
+    } else {
+      url = `${MODE == 'development' ? 'http://127.0.0.1:7001' : baseUrl}${url}`
+      return url
     }
   }

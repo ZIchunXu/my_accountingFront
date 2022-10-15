@@ -2,19 +2,27 @@
     position: fixed;
     top: 0px;
     width: 100%;
-    background-color: #d4b0dfde;
-    color: #ffffff;
+    background-color: #4b6b6b;
+    color: #e3dcd9;
+
+    .data {
+        display: flex;
+        justify-content: space-around;
+        width: 80%;
+        margin: auto;
+    }
+
+    .typeSection {
+        display: flex;
+        width: 80%;
+        margin: auto;
+        justify-content: space-around;
+        margin-bottom: 2%;
+
+    }
 }
 
-.data {
-    display: flex;
-    justify-content: space-around;
-}
 
-.typeSection {
-    display: flex;
-    justify-content: space-around;
-}
 
 .content {
     height: calc(~"(100% - 150px)");
@@ -23,7 +31,7 @@
     width: 100%;
     overflow: hidden;
     overflow-y: scroll;
-    background-color: #eefbf9;
+    background-color: #ffffff;
     padding: 10px;
 
     :global {
@@ -41,7 +49,7 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    box-shadow: 0 0 10px 0 rgb(0 0 0 / 20%);
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 50%);
     background-color: #fff;
     display: flex;
     justify-content: center;

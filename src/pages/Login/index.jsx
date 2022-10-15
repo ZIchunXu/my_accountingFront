@@ -7,8 +7,38 @@ const Login = () => {
     const [type, setType] = useState(0);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    return <div className={s.auth}>
-        <div className={s.head} />
+    
+
+const onSubmit = async (username, password, type) => {
+    if (!username) {
+        Toast.show('Please enter username');
+        return;
+    }
+    if (!password) {
+        Toast.show('Please enter password')
+        return;
+    }
+    try {
+        if (type == 0) {
+            const { data } = await post('/user/login', {
+                username,
+                password
+            });
+            localStorage.setItem('token', data.token);
+            window.location.href = '/';
+            Toast.show('Login Sucessful');
+        } else {
+            const { data } = await post('/user/register', {
+                username,
+                password
+            });
+            Toast.show('Register Sucessful');
+        }
+    } catch (error) {
+        Toast.show('Incorrect username or password');
+    }
+};
+    return <div className={s.login}>
         <div>
             <Tabs value={type} onChange={setType}>
                 <Panel title="Login" ></Panel>
@@ -38,34 +68,4 @@ const Login = () => {
         </div>
     </div>
 }
-
-const onSubmit = async (username, password, type) => {
-    if (!username) {
-        Toast.show('Please enter username');
-        return;
-    }
-    if (!password) {
-        Toast.show('Please enter password')
-        return;
-    }
-    try {
-        if (type == 0) {
-            const { data } = await post('/user/login', {
-                username,
-                password
-            });
-            localStorage.setItem('token', data.token);
-            window.location.href = '/';
-            Toast.show('Login Sucessful');
-        } else {
-            const { data } = await post('/user/register', {
-                username,
-                password
-            });
-            Toast.show('Register Sucessful');
-        }
-    } catch (error) {
-        Toast.show('System Error');
-    }
-};
 export default Login

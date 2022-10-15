@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@antv/f2": "^4.0.33",
+    "@antv/f2-react": "^4.0.33",
     "axios": "^0.27.2",
     "classnames": "^2.3.2",
     "consola": "^2.15.3",
@@ -16,12 +18,13 @@
     "lib-flexible": "^0.3.2",
     "postcss-pxtorem": "^6.0.0",
     "prop-types": "^15.8.1",
+    "query-string": "^7.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-refresh": "^0.14.0",
     "react-router-dom": "^6.4.1",
     "reactjs-popup": "^2.0.5",
-    "zarm": "^2.8.2"
+    "zarm": "^2.9.16"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import s from './style.module.less';
-// import { typeMap } from '@/utils';
 import { Cell } from 'zarm';
 import { useNavigate } from 'react-router-dom';
 import { Icon } from 'zarm';
@@ -30,7 +29,7 @@ const BillItem = ({ data }) => {
     }), [data.bills];
 
     const detail = (item) => {
-        navigate(`/bill/detail?id=${item.id}`)
+        navigate(`/detail?id=${item.id}`)
     };
     return <div className={s.item}>
         <div className={s.headerDate}>
@@ -49,7 +48,7 @@ const BillItem = ({ data }) => {
                     <>
                         <MyIcon
                             className={s.itemIcon}
-                            type={item.type_id ? typeMap[item.type_id].icon : 1}
+                            type={typeMap[item.type_id] ? typeMap[item.type_id].icon : 'icon-qita'}
                         />
                         <span>{item.type_name}</span>
                     </>
