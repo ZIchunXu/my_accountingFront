@@ -4,52 +4,52 @@ export const post = axios.post
 import { baseUrl } from '@/config'
 const MODE = import.meta.env.MODE 
 export const typeMap = {
-    "6347af46e7eb3c55745536ce": {
+    "634b80a8ed19fe7848c2e638": {
       icon: 'icon-gouwu-2'
     },
-    "6347af53e7eb3c55745536d0": {
+    "634b80caed19fe7848c2e63a": {
       icon: 'icon-yinliao'
     },
-    "6347af5ae7eb3c55745536d2": {
+    "634b80d5ed19fe7848c2e63c": {
       icon: 'icon-burger'
     },
-    "6347af67e7eb3c55745536d4": {
+    "634b80dded19fe7848c2e63e": {
       icon: 'icon-jiaotongbaoxiao'
     },
-    "6347af6de7eb3c55745536d6": {
+    "634b80e1ed19fe7848c2e640": {
       icon: 'icon-fangwuzushou'
     },
-    "6347af73e7eb3c55745536d8": {
+    "634b80e6ed19fe7848c2e642": {
       icon: 'icon-diannao'
     },
-    "6347af79e7eb3c55745536da": {
+    "634b80eced19fe7848c2e644": {
       icon: 'icon-HouseholdCarbonFootprint'
     },
-    "6347af7ee7eb3c55745536dc": {
+    "634b80f2ed19fe7848c2e646": {
       icon: 'icon-gasstation'
     },
-    "6347af88e7eb3c55745536de": {
+    "634b80f9ed19fe7848c2e648": {
       icon: 'icon-kouhong'
     },
-    "6347af8fe7eb3c55745536e0": {
+    "634b8102ed19fe7848c2e64a": {
       icon: 'icon-medicine-chest'
     },
-    "6347af95e7eb3c55745536e2": {
+    "634b8105ed19fe7848c2e64c": {
       icon: 'icon-liwu1'
     },
-    "6347af9ae7eb3c55745536e4": {
+    "634b810aed19fe7848c2e64e": {
       icon: 'icon-wenju'
     },
-    "6347af9fe7eb3c55745536e6": {
+    "634b810fed19fe7848c2e650": {
       icon: 'icon-WagesandSalaries'
     },
-    "6347afaee7eb3c55745536e8": {
+    "634b8114ed19fe7848c2e652": {
       icon: 'icon-chuqianguan'
     },
-    "6347afb4e7eb3c55745536ea": {
+    "634b811bed19fe7848c2e654": {
       icon: 'icon-meijin'
     },
-    "6347afbce7eb3c55745536ec": {
+    "634b8121ed19fe7848c2e656": {
       icon: 'icon-qita'
     }
     
