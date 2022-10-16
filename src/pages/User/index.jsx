@@ -37,7 +37,7 @@ const User = () => {
     <div className={s.head}>
       <img className={s.avatar} style={{ width: 100, height: 100, borderRadius: 8 }} src={user.avatar || '--'} alt="" />
       <span style={{ fontSize: 20}}><b>Name:{user.username || '--'}</b></span>
-      <span style={{  fontSize: 13}}>About: {user.about || '--'}</span>
+      <span style={{  fontSize: 17}}>About: {user.about || '--'}</span>
     </div>
     <div className={s.content}>
         <div className={s.list} onClick={() => userInfo()}>Change Information</div>
