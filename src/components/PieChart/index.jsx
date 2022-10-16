@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import s from './style.module.less';
 
 const PieChart = ({ chartData = [], totalExpense, totalIncome }) => {
-    console.log('进入 PieChart', chartData)
     return (
         <div className={s.pieChart}>
             {chartData.length > 0 ? <Canvas pixelRatio={window.devicePixelRatio}>
