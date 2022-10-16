@@ -108,7 +108,7 @@ const Home = () => {
             <div className={s.typeSection}>
                 <div className={s.left}>
                     <Popup trigger={<span>{currentSelect.name || "All Type"}</span>}>
-                        <PopupType onSelect={select} />
+                        <PopupType onSelect={select} activeNow={currentSelect.id ? currentSelect.id : 'all'}/>
                     </Popup>
                 </div>
                 <div className={s.right}>

@@ -5,8 +5,8 @@ import 'reactjs-popup/dist/index.css';
 import { get } from '@/utils';
 import cx from 'classnames';
 
-const PopupType = ({onSelect}) => {
-    const [active, setActive] = useState('all'); // active
+const PopupType = ({onSelect, activeNow}) => {
+    const [active, setActive] = useState(activeNow); // active
     const [expense, setExpense] = useState([]);
     const [income, setIncome] = useState([]);
 
