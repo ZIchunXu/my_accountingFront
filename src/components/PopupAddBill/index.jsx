@@ -7,7 +7,7 @@ import s from './style.module.less';
 import cx from 'classnames';
 import Popup from 'reactjs-popup';
 import { get, typeMap, post } from '@/utils';
-const MyIcon = Icon.createFromIconfont('//at.alicdn.com/t/c/font_3668999_xhshfhh89i.js');
+const MyIcon = Icon.createFromIconfont('//at.alicdn.com/t/c/font_3668999_ytp5r0i1pf.js');
 
 const PopupAddBill = ({ detail = {}, close, onReload }) => {
     const id = detail && detail.id;
@@ -19,6 +19,8 @@ const PopupAddBill = ({ detail = {}, close, onReload }) => {
     const [amount, setAmount] = useState('');
     const [remark, setRemark] = useState('');
     const [showRemark, setShowRemark] = useState(false);
+    const [addTypeName, setaddTypeName] = useState('');
+    const [addType, setaddType] = useState(1);
     const changeType = (type) => {
         setPayType(type);
     };
@@ -50,6 +52,15 @@ const PopupAddBill = ({ detail = {}, close, onReload }) => {
         if (!id) {
             setCurrentType(expense_data[0]);
         };
+    }
+    const addnewType = async () => {
+        const params = {
+            name: addTypeName,
+            type: addType,
+        }
+        const result = await post('/type/add', params);
+        Toast.show("type added");
+        getTypeList();
     }
 
     const selectDate = (val) => {
@@ -138,7 +149,23 @@ const PopupAddBill = ({ detail = {}, close, onReload }) => {
                                 </span>
                                 <span className={s.name}>{item.name}</span>
                             </div>)
-                        }</div>
+                        }
+                        <div className={s.addType}>
+                            <Popup trigger={<MyIcon className={s.addIcon} type={'icon-tianjia'} />} position="bottom center">
+                                <div>Type Name</div>
+                                <Input
+                                    clearable
+                                    type="text"
+                                    placeholder="Please enter new type name"
+                                    onChange={(value) => setaddTypeName(value)}
+                                />
+                                <button onClick={() => setaddType(1)}>Expense</button>
+                                <button onClick={() => setaddType(2)}>Income</button>
+                                <button onClick={() => addnewType()}>Add</button>
+                            </Popup>
+                            <span className={s.name}>Add Type</span></div>
+
+                    </div>
                 </div>
                 <div className={s.remark}>
                     {

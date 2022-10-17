@@ -38,12 +38,10 @@
         white-space: nowrap;
 
         .typeItem {
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
             padding: 10px;
 
-            .iconfont-wrap {
+            .iconfontWrap {
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -72,6 +70,19 @@
             }
             .name {
                 font-size: 10px;
+            }
+        }
+        .addType {
+            
+            font-size: 10px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            :first-child {
+                border-radius: 50%;
+                width: 30px;
+                height: 30px;
+                margin-bottom: 5px;
             }
         }
     }
