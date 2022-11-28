@@ -1,0 +1,66 @@
+.card {
+    position: fixed;
+    top: 15%;
+    height: 50%;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 25px;;
+    .type {
+        margin: auto;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+
+        .iconfont {
+            font-size: 70px;
+        }
+
+        .font {
+            font-size: 20px;
+        }
+
+        .amount {
+            font-size: 25px;
+
+            .expense {
+                color: red;
+            }
+
+            .income {
+                color: #39be77;
+            }
+        }
+    }
+
+    .info {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        font-size: 15px;
+        margin-bottom: 10%;
+    }
+    .operation {
+        text-align: center;
+        font-size: 15px;
+        display: flex;
+        justify-content: space-around;
+        :nth-child(1) {
+            background-color: #8b6c5b;
+            padding: 2% 5% 2% 5%;
+            width: 40%;
+            border-radius: 10px;
+            color: #e3dcd9;
+        }
+        :nth-child(2) {
+            background-color: #748484;
+            color: #e3dcd9;
+            padding: 2% 5% 2% 5%;
+            width: 40%;
+            border-radius: 10px;
+        }
+    }
+    .remark {
+        font-size: 20px;
+    }
+}
